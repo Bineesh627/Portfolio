@@ -1,0 +1,11 @@
+name = "portfolio-llm"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[ai]
+binding = "AI"
+
+[vars]
+# Comma-separated list of sites allowed to call this worker ("*" = any site).
+ALLOWED_ORIGINS = "*"
+# MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"   # optional: swap the model
