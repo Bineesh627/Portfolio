@@ -774,3 +774,4 @@ svg.lucide { flex: none; vertical-align: -0.125em; }
   .lb-close { width: 46px; height: 46px; background: rgba(20, 24, 44, .78); }
 }
 @media (prefers-reduced-motion: reduce) { .lb-hint { animation: none; } }
+.stars svg { fill: currentColor; }

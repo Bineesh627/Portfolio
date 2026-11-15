@@ -310,7 +310,7 @@
         signal: ctrl ? ctrl.signal : undefined
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {
-          if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+          if (!res.ok) { var e = new Error(data.error || ('HTTP ' + res.status)); e.status = res.status; e.detail = data.detail; throw e; }
           var text = (data.response || data.reply || '').toString().trim();
           if (!text) throw new Error('Empty response');
           return { text: text, whatsapp: typeof data.whatsapp === 'string' ? data.whatsapp : '' };
@@ -345,7 +345,7 @@
         }
       }).catch(function (err) {
         if (myRun !== runId) return;
-        if (window.console) console.error('Chat error:', err);
+        if (window.console) console.error('Chat error:', err && err.status, err && err.message, err && err.detail);
         View.removeTyping(typingRow); typingRow = null;
         var msg = (err && err.name === 'AbortError')
           ? 'That took too long. Please try again.'

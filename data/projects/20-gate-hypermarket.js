@@ -34,7 +34,6 @@ SITE_DATA.projectsData.push({
 </ul>
 <h2>Design &amp; Performance</h2>
 <p>Responsive layouts with dedicated desktop and mobile hero images, clean typography and a content-first structure tuned for local search in the UAE.</p>
-<p>Live site: <a href="https://www.gateuae.com/" target="_blank" rel="noopener noreferrer">gateuae.com</a></p>
 `,
   specs: [
     { label: "Category", value: "Retail Website + Admin CMS" },

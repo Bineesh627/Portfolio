@@ -26,12 +26,10 @@ SITE_DATA.projectsData.push({
 <li><code>llms.txt</code> and <code>llms-full.txt</code> so AI search tools can describe the course accurately.</li>
 <li>Lightweight static pages deployed on Vercel.</li>
 </ul>
-<p>Live demo: <a href="https://innoversse.vercel.app" target="_blank" rel="noopener noreferrer">innoversse.vercel.app</a></p>
 `,
   specs: [
     { label: "Category", value: "Online Course Website" },
     { label: "Language", value: "Malayalam" },
-    { label: "Live Demo", value: "innoversse.vercel.app" },
     { label: "Stack", value: "HTML · CSS · JavaScript" }
   ],
   gallery: [

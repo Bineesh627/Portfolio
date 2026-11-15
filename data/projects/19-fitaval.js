@@ -32,7 +32,6 @@ SITE_DATA.projectsData.push({
 <blockquote><p>The goal is not another gym app. It is a business operating system for fitness.</p></blockquote>
 <h2>My Role</h2>
 <p>As co-founder and CTO I own product architecture, engineering delivery and the technical roadmap across the mobile app and web platforms.</p>
-<p>Visit <a href="https://www.fitaval.com/" target="_blank" rel="noopener noreferrer">fitaval.com</a>.</p>
 `,
   specs: [
     { label: "Category", value: "Fitness SaaS Platform" },

@@ -32,9 +32,6 @@ SITE_DATA.projectsData.push({
   <li><strong>Content &amp; Brand Strategy:</strong> Conversion-oriented copywriting, brand guidelines, and client acquisition funnels.</li>
   <li><strong>Performance Advertising:</strong> High-performance, lightweight landing pages built to handle ad traffic and capture leads with zero loading latency.</li>
 </ul>
-<h2>Live Deployment</h2>
-<p>The complete, functional agency website is deployed and live:</p>
-<p><a href="https://selio-marketing.vercel.app/" target="_blank" rel="noopener noreferrer" class="active-tag text-decoration-none">🔗 Visit Live Site: selio-marketing.vercel.app</a></p>
 <blockquote><p>&quot;Elminating heavyweight component frameworks improved mobile page speed index scores from 45 to 98, driving a direct 25% increase in lead conversions.&quot;</p>
 </blockquote>
 `,

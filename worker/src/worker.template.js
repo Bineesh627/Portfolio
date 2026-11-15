@@ -111,6 +111,7 @@ export default {
     const cors = corsHeaders(request, env);
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+    if (request.method === "GET") return json({ ok: true, ai: !!env.AI, model: env.MODEL || DEFAULT_MODEL }, 200, cors);   // open the worker URL in a browser to check it is alive
     if (request.method !== "POST") return json({ error: "Send a POST request" }, 405, cors);
     if (!env.AI) return json({ error: "Cloudflare 'AI' binding is not configured" }, 500, cors);
 
@@ -147,7 +148,8 @@ export default {
         temperature: 0.35,
       });
 
-      let text = String((out && (out.response || (out.result && out.result.response))) || "").trim();
+      const raw = out && (out.response || (out.result && out.result.response) || (out.choices && out.choices[0] && out.choices[0].message && out.choices[0].message.content));
+      let text = String(raw || "").trim();
       if (!text) return json({ error: "Empty model response" }, 502, cors);
 
       /* the model asks for the WhatsApp button with a marker; we also add it on our own at natural end points */
@@ -166,7 +168,7 @@ export default {
       if (wants) reply.whatsapp = whatsappUrl(userMsgs);
       return json(reply, 200, cors);
     } catch (err) {
-      return json({ error: "AI request failed" }, 502, cors);
+      return json({ error: "AI request failed", detail: String((err && err.message) || err).slice(0, 300) }, 502, cors);
     }
   },
 };
