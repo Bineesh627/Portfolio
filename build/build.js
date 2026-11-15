@@ -80,3 +80,24 @@ write("sw.js", read("sw.js").replace(/const VERSION = '[^']*';/, `const VERSION 
 
 const kb = (s) => (Buffer.byteLength(s) / 1024).toFixed(1) + " KB";
 console.log(`app.js ${kb(jsOut)} | app.css ${kb(cssOut)} | sw cache version ${version}`);
+
+/* ---------- 5. assemble the deployable site into /public ----------
+   Vercel serves the "public" folder. Only the files the site really needs are
+   copied, so worker/, build/, data/, dev-server.js etc. are never exposed. */
+const OUT = path.join(ROOT, "public");
+fs.rmSync(OUT, { recursive: true, force: true });
+fs.mkdirSync(OUT, { recursive: true });
+
+const copy = (rel) => {
+  const from = path.join(ROOT, rel);
+  if (!fs.existsSync(from)) return;
+  const to = path.join(OUT, rel);
+  fs.mkdirSync(path.dirname(to), { recursive: true });
+  fs.cpSync(from, to, { recursive: true });
+};
+
+fs.readdirSync(ROOT).filter((f) => f.endsWith(".html")).forEach(copy);          // all pages incl. 404 + google verification
+["favicon.svg", "manifest.json", "sw.js", "robots.txt", "sitemap.xml", "llms.txt",
+  ".well-known", "assets", "vendor", "css/app.css", "js/app.js"].forEach(copy);
+
+console.log("public/ ready:", fs.readdirSync(OUT).join(", "));
