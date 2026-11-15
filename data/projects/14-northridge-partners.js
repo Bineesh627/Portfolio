@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 14,
+  slug: "northridge-partners",
   title: "Northridge Partners — Strategic Talent Landing Site",
   description: "A desktop-first, fully responsive React landing page for Northridge Partners, a strategic talent and recruitment partner, with a data-driven content file so copy can be edited without touching components.",
   image: "assets/img/projects/new/northridge-hero.webp",

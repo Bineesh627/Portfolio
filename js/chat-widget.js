@@ -225,7 +225,7 @@
       }).then(function () {
         if (myRun !== runId) return;
         setBusy(false);
-        if (isOpen) View.els.input.focus({ preventScroll: true });
+        if (isOpen && !(mq && mq.matches)) View.els.input.focus({ preventScroll: true });
       });
     }
 
@@ -241,19 +241,34 @@
       if (CFG.suggestions && CFG.suggestions.length) chips = View.showChips(CFG.suggestions, send);
     }
 
+    /* keep the panel inside the visible viewport (shrinks when the keyboard opens) */
+    var vv = window.visualViewport, mq = window.matchMedia ? window.matchMedia('(max-width: 600px)') : null;
+    function fit() {
+      var p = View.els.panel;
+      if (!isOpen || !mq || !mq.matches || !vv) { p.style.removeProperty('--cw-top'); p.style.removeProperty('--cw-h'); return; }
+      p.style.setProperty('--cw-top', vv.offsetTop + 'px');
+      p.style.setProperty('--cw-h', vv.height + 'px');
+      View.els.log.scrollTop = View.els.log.scrollHeight;
+    }
+    function lock(on) {
+      if (mq && mq.matches) document.documentElement.classList.toggle('cw-lock', on);
+    }
+
     function open() {
       isOpen = true;
+      lock(true); fit();
       View.els.panel.hidden = false;
       requestAnimationFrame(function () { View.els.panel.classList.add('cw-open'); });
       View.els.launcher.classList.add('cw-active');
       View.els.launcher.setAttribute('aria-expanded', 'true');
       View.els.launcher.setAttribute('aria-label', 'Close chat assistant');
       if (!started) start();
-      View.els.input.focus({ preventScroll: true });
+      if (!(mq && mq.matches)) View.els.input.focus({ preventScroll: true });   // on phones, don't pop the keyboard up automatically
     }
 
     function close() {
       isOpen = false;
+      lock(false); fit();
       View.els.panel.classList.remove('cw-open');
       View.els.launcher.classList.remove('cw-active');
       View.els.launcher.setAttribute('aria-expanded', 'false');
@@ -272,6 +287,9 @@
         if (ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); send(e.input.value); }
       });
       document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && isOpen) close(); });
+      if (vv) { vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
+      window.addEventListener('orientationchange', function () { setTimeout(fit, 250); });
+      e.input.addEventListener('focus', function () { setTimeout(fit, 300); });
     }
 
     return { init: init };

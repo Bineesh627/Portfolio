@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 10,
+  slug: "corepro-sales-hub",
   title: "CorePro Sales Hub — Sales CRM Platform",
   description: "A role-based sales CRM for CorePro Techno: lead management with CSV/Excel import, monthly target tracking for sales executives, and a live team dashboard for managers and admins.",
   image: "assets/img/projects/new/cover-salescrm.webp",

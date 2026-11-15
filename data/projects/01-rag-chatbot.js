@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). Use ${'$'}{...} only if you need a literal dollar-brace. */
 SITE_DATA.projectsData.push({
   id: 1,
+  slug: "rag-chatbot",
   title: "RAG Chatbot — AI College Assistant",
   description: "Developed a college chatbot leveraging Retrieval-Augmented Generation (RAG) in collaboration with the principal. The system employs intelligent agents to extract information from the college website and PDF documents, all managed through a dedicated admin panel for seamless operation.",
   image: "assets/img/projects/project-img1.webp",

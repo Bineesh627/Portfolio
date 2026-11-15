@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 15,
+  slug: "sri-vinayaka-group",
   title: "Sri Vinayaka Group — Sleeper Bus, Logistics & Tours Website",
   description: "A multi-page, SEO- and AI-search-optimised website for Sri Vinayaka Group covering Bangalore–Coorg AC sleeper buses, overnight parcel logistics and tour packages, built with HTML, CSS and JavaScript.",
   image: "assets/img/projects/new/srivinayaka-bus-front.webp",

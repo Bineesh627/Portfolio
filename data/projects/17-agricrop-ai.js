@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 17,
+  slug: "agricrop-ai",
   title: "AgriCrop AI — Smart Crop Recommendation & Analytics",
   description: "A Django and scikit-learn web app that recommends the best crop from soil nutrients (N, P, K, pH) and climate (temperature, humidity, rainfall), with a crop library, prediction history and farmer/admin roles.",
   image: "assets/img/projects/new/cover-agricrop.webp",

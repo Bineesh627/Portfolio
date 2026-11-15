@@ -1,12 +1,19 @@
-/* project.js — single project case study (/project?id=N) */
+/* project.js — single project case study (/project?slug=name) */
 (function () {
   'use strict';
   var S = window.Site, D = S.data, ic = S.ic, esc = S.esc;
 
   var FALLBACK = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600';
   var params = new URLSearchParams(location.search);
-  var id = params.get('id');
-  var project = D.projectsData.filter(function (p) { return p.id === parseInt(id, 10); })[0];
+  var slug = params.get('slug');
+  var legacyId = params.get('id');          // old links: /project?id=N -> redirect to the slug URL
+  var project = D.projectsData.filter(function (p) {
+    return slug ? p.slug === slug : (legacyId && p.id === parseInt(legacyId, 10));
+  })[0];
+  if (project && !slug && window.history && history.replaceState) {
+    history.replaceState(null, '', '/project?slug=' + project.slug + location.hash);
+  }
+  var id = project ? project.id : null;     // metadata is keyed by numeric id
 
   var active = null, zoomed = false;
 

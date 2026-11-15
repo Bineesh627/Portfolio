@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). Use ${'$'}{...} only if you need a literal dollar-brace. */
 SITE_DATA.projectsData.push({
   id: 3,
+  slug: "mobileinfoga",
   title: "MobileInfoga — OSINT Phone Reconnaissance Toolkit",
   description: "MobileInfoGa is a powerful OSINT tool designed to gather comprehensive details about phone numbers. Utilizing various techniques and integrations, it can retrieve information such as country of origin, carrier details, and potential online associations.",
   image: "assets/img/projects/project-img3.webp",

@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 18,
+  slug: "innoverse",
   title: "INNOVERSSE — AI Video Creation Masterclass Website",
   description: "A high-converting, SEO-optimised course website for INNOVERSSE, a Malayalam AI video creation masterclass, with a student-work showcase, testimonials and direct enrollment flow. Built with HTML, CSS and JavaScript.",
   image: "assets/img/projects/new/innoverse-founder.webp",

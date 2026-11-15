@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 11,
+  slug: "uplixo",
   title: "UpliXo — Career Readiness & Consulting Platform",
   description: "A modern marketing and consulting website for UpliXo, a career-guidance partner for students, career returnees and working professionals, featuring an AI chat assistant and animated, high-polish UI.",
   image: "assets/img/projects/new/cover-uplixo.webp",

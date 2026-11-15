@@ -20,7 +20,7 @@ Save the file, refresh the browser — done.
 | Blog posts | `blogs/` (one file per post) |
 
 ## Add a project
-1. Copy any file in `data/projects/` → e.g. `10-my-new-app.js`.
+1. Copy any file in `data/projects/` → e.g. `10-my-new-app.js`, and give it a unique `slug` (lowercase-with-dashes, used in the URL: `/project?slug=my-new-app`).
 2. Change `id` (must be unique), `title`, `description`, `image`, `tags`, `githubUrl`, `caseStudyContent` (plain HTML).
 3. Open `data/loader.js` and add `"data/projects/10-my-new-app.js",` to the `projects` list. Order in the list = order on the site.
 4. (Optional) add SEO info for it in `metadata.js` → `projectsMetadata`, keyed by the id.

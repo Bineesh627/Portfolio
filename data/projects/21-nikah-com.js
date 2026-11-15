@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 21,
+  slug: "nikah-com",
   title: "Nikah.com — Matrimonial Advertising & Profile Sharing Website",
   description: "A clean, trust-focused website for a matrimonial advertising and profile-sharing service in Kerala, with a transparent four-step process, clear policy pages, testimonials, an FAQ and WhatsApp-first contact.",
   image: "assets/img/projects/new/cover-nikahcom.webp",

@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). Use ${'$'}{...} only if you need a literal dollar-brace. */
 SITE_DATA.projectsData.push({
   id: 8,
+  slug: "cervical-ai",
   title: "Cervical AI — Federated Learning Cancer Screening",
   description: "A privacy-preserving multimodal AI system utilizing PyTorch models and the Flower federated learning framework for early cervical cancer detection.",
   image: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?auto=format&fit=crop&q=80&w=800",

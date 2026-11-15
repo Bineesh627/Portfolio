@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 13,
+  slug: "herambition",
   title: "HerAmbition — Women's Leadership & Career Community",
   description: "A premium Next.js website for HerAmbition, a women's leadership and career community, showcasing programs, membership, events and organisation partnerships with smooth Framer Motion interactions.",
   image: "assets/img/projects/new/herambition-hero-portrait.webp",

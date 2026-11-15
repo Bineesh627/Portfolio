@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML. liveUrl / githubUrl are optional. */
 SITE_DATA.projectsData.push({
   id: 19,
+  slug: "fitaval",
   title: "Fitaval — Multi-Tenant Fitness Business Platform",
   description: "A complete fitness-business ecosystem: a member mobile app, a gym management CRM and a super-admin console, giving gym owners, staff, trainers and platform operators one connected system.",
   image: "assets/img/projects/new/cover-fitaval.webp",

@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML. liveUrl / githubUrl are optional. */
 SITE_DATA.projectsData.push({
   id: 20,
+  slug: "gate-hypermarket",
   title: "Gate Hypermarket — Retail Website with Flyers, Stores & Careers",
   description: "A full retail website for Gate Hypermarket in Dubai and Ajman: weekly digital flyers, store locator, blog, careers portal with online applications, and an admin panel to manage all content and SEO without code.",
   image: "assets/img/projects/new/gate-hero.webp",

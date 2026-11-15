@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 16,
+  slug: "kaizer-lars",
   title: "KAIZER LARS — Premium Phone Case E-Commerce Storefront",
   description: "A monochrome luxury e-commerce storefront for phone cases and tech accessories, with predictive search, cart drawer, wishlist, product pages, collections and an account area.",
   image: "assets/img/projects/new/cover-casemark.webp",

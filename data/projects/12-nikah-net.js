@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 12,
+  slug: "nikah-net",
   title: "Nikah.Net — Muslim Matrimonial Advertising Platform",
   description: "A bilingual (English / Malayalam) matrimonial advertising platform for Kerala Muslim families, with searchable profiles, a 5-step ad wizard, shortlist, biodata view and privacy-first design.",
   image: "assets/img/projects/new/cover-nikkahnet.webp",

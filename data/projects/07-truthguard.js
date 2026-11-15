@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). Use ${'$'}{...} only if you need a literal dollar-brace. */
 SITE_DATA.projectsData.push({
   id: 7,
+  slug: "truthguard",
   title: "TruthGuard — LSTM-Based Fake News Detector",
   description: "A Django-based web application that uses a TensorFlow/Keras LSTM neural network to detect fake news from text or URLs in real-time.",
   image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800",

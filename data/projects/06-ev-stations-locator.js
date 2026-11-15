@@ -2,6 +2,7 @@
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). Use ${'$'}{...} only if you need a literal dollar-brace. */
 SITE_DATA.projectsData.push({
   id: 6,
+  slug: "ev-stations-locator",
   title: "EV Stations Locator — Charging Point Finder",
   description: "A web utility mapping and locating nearby electric vehicle charging stations, integrating Google Maps API and routing systems.",
   image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800",

@@ -33,28 +33,28 @@ const KNOWLEDGE_TEXT = `
 - Full-stack websites and web apps, plus mobile apps
 - Open to freelance, contract and milestone-based projects and consultations
 
-## Projects (case studies at /projects)
-- Fitaval: Multi-tenant fitness platform with Flutter member app, React gym CRM and super-admin console. https://www.fitaval.com/
-- CorePro Sales Hub: Role-based sales CRM with lead import (CSV/Excel), monthly targets and a live team dashboard. Tech: TanStack Start, React 19, TypeScript, Firebase.
-- Cervical AI: Privacy-preserving multimodal AI for early cervical cancer detection using PyTorch, Flower federated learning and explainable AI.
-- RAG Chatbot (AI College Assistant): Built with the college principal. Uses LangChain agents to answer from the college website and PDFs, with an admin panel. Tech: Python, Django, LangChain.
-- TruthGuard: Django + TensorFlow/Keras LSTM web app that detects fake news from text or URLs.
-- AgriCrop AI: Django + scikit-learn (Random Forest) app that recommends crops from soil nutrients (N, P, K, pH) and climate data, with prediction history and farmer/admin roles.
-- Vehicle Rental Service: Fleet management mobile app (React Native, Expo) with Django API, KYC validation, dynamic pricing and booking locks.
-- MobileInfoga: OSINT toolkit that gathers phone-number details (country, carrier, online associations). Tech: Python, Telethon.
-- Nikah.com: Trust-focused matrimonial advertising site for Kerala. React, TypeScript, Tailwind. https://www.nikahcom.in/
-- Nikah.Net: Bilingual (English/Malayalam) matrimonial platform with searchable profiles and a privacy-first design. https://www.nikkahnet.in/
-- Gate Hypermarket: Retail website for stores in Dubai and Ajman with digital flyers, store locator, careers portal and CMS admin. https://www.gateuae.com/
-- UpliXo: Career guidance and consulting site with an AI chat assistant. https://www.uplixo.in/
-- HerAmbition: Women's leadership community site built with Next.js and Framer Motion.
-- Northridge Partners: Responsive React landing site for a talent and recruitment partner. https://www.northridgepartner.com/
-- Sri Vinayaka Group: SEO-optimised site for sleeper buses, logistics and tours. https://www.srivinayakagroup.com/
-- KAIZER LARS: Luxury phone-case e-commerce storefront. https://casemark.vercel.app/
-- INNOVERSSE: Course website for a Malayalam AI video creation masterclass. https://innoversse.vercel.app/
-- Selio Marketing Co: Lead-capture website for a digital agency. https://www.seliomarketing.com/
-- RecipeRave: Django recipe-sharing community platform.
-- EV Stations Locator: Maps tool for finding EV charging stations.
-- E-Shop: E-commerce storefront with cart and search.
+## Projects (overview at /projects; each has a case study page at /project?slug=NAME)
+- Fitaval: Multi-tenant fitness platform with Flutter member app, React gym CRM and super-admin console. https://www.fitaval.com/ Case study: /project?slug=fitaval
+- CorePro Sales Hub: Role-based sales CRM with lead import (CSV/Excel), monthly targets and a live team dashboard. Tech: TanStack Start, React 19, TypeScript, Firebase. Case study: /project?slug=corepro-sales-hub
+- Cervical AI: Privacy-preserving multimodal AI for early cervical cancer detection using PyTorch, Flower federated learning and explainable AI. Case study: /project?slug=cervical-ai
+- RAG Chatbot (AI College Assistant): Built with the college principal. Uses LangChain agents to answer from the college website and PDFs, with an admin panel. Tech: Python, Django, LangChain. Case study: /project?slug=rag-chatbot
+- TruthGuard: Django + TensorFlow/Keras LSTM web app that detects fake news from text or URLs. Case study: /project?slug=truthguard
+- AgriCrop AI: Django + scikit-learn (Random Forest) app that recommends crops from soil nutrients (N, P, K, pH) and climate data, with prediction history and farmer/admin roles. Case study: /project?slug=agricrop-ai
+- Vehicle Rental Service: Fleet management mobile app (React Native, Expo) with Django API, KYC validation, dynamic pricing and booking locks. Case study: /project?slug=vehicle-rental-service
+- MobileInfoga: OSINT toolkit that gathers phone-number details (country, carrier, online associations). Tech: Python, Telethon. Case study: /project?slug=mobileinfoga
+- Nikah.com: Trust-focused matrimonial advertising site for Kerala. React, TypeScript, Tailwind. https://www.nikahcom.in/ Case study: /project?slug=nikah-com
+- Nikah.Net: Bilingual (English/Malayalam) matrimonial platform with searchable profiles and a privacy-first design. https://www.nikkahnet.in/ Case study: /project?slug=nikah-net
+- Gate Hypermarket: Retail website for stores in Dubai and Ajman with digital flyers, store locator, careers portal and CMS admin. https://www.gateuae.com/ Case study: /project?slug=gate-hypermarket
+- UpliXo: Career guidance and consulting site with an AI chat assistant. https://www.uplixo.in/ Case study: /project?slug=uplixo
+- HerAmbition: Women's leadership community site built with Next.js and Framer Motion. Case study: /project?slug=herambition
+- Northridge Partners: Responsive React landing site for a talent and recruitment partner. https://www.northridgepartner.com/ Case study: /project?slug=northridge-partners
+- Sri Vinayaka Group: SEO-optimised site for sleeper buses, logistics and tours. https://www.srivinayakagroup.com/ Case study: /project?slug=sri-vinayaka-group
+- KAIZER LARS: Luxury phone-case e-commerce storefront. https://casemark.vercel.app/ Case study: /project?slug=kaizer-lars
+- INNOVERSSE: Course website for a Malayalam AI video creation masterclass. https://innoversse.vercel.app/ Case study: /project?slug=innoverse
+- Selio Marketing Co: Lead-capture website for a digital agency. https://www.seliomarketing.com/ Case study: /project?slug=selio-marketing-co
+- RecipeRave: Django recipe-sharing community platform. Case study: /project?slug=reciperave
+- EV Stations Locator: Maps tool for finding EV charging stations. Case study: /project?slug=ev-stations-locator
+- E-Shop: E-commerce storefront with cart and search. Case study: /project?slug=e-shop
 
 ## Achievements & Events
 - Dr. C.V. Raman Foundation: Innovative Thinker and Innovative Person Award, presented on 29 Jan 2025.

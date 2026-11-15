@@ -1,5 +1,5 @@
 /* =====================================================================
-   chat-widget.css — scripted AI-style chat widget
+   chat-widget.css — live AI chat widget
    Uses the site's design tokens (with fallbacks) so it follows light/dark.
    All classes are prefixed "cw-" to avoid clashes.
    ===================================================================== */
@@ -146,18 +146,25 @@
 @keyframes cw-rise   { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @keyframes cw-online { 0% { box-shadow: 0 0 0 0 rgba(18, 161, 80, .55); } 70% { box-shadow: 0 0 0 7px rgba(18, 161, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(18, 161, 80, 0); } }
 
-/* ---------- Small screens ---------- */
-@media (max-width: 480px) {
+/* ---------- Small screens: full-screen sheet that follows the on-screen keyboard ----------
+   JS (visualViewport) sets --cw-top / --cw-h so the panel always fits the VISIBLE area,
+   which keeps the input bar above the keyboard. */
+@media (max-width: 600px) {
   .cw-launcher { right: 14px; bottom: 14px; width: 54px; height: 54px; }
-  .cw-panel { right: 12px; left: 12px; width: auto; bottom: 80px; height: min(620px, calc(100dvh - 100px)); }
+  .cw-launcher.cw-active { display: none; }          /* header X closes the chat instead */
+  .cw-panel {
+    left: 0; right: 0; bottom: auto; width: auto; border-radius: 0; border: 0;
+    top: var(--cw-top, 0px); height: var(--cw-h, 100dvh); transform-origin: bottom center;
+  }
+  .cw-iconbtn { width: 40px; height: 40px; }
+  .cw-header { padding-top: max(.9rem, env(safe-area-inset-top)); }
+  .cw-footer { padding-bottom: max(.6rem, env(safe-area-inset-bottom)); }
+  .cw-input { font-size: 16px; padding: .7rem .8rem; }   /* 16px stops iOS zooming on focus */
+  .cw-send { width: 42px; height: 42px; }
+  .cw-newchat span { display: none; }                   /* icon only, saves room for the input */
+  .cw-newchat { padding: .65rem; }
+  .cw-chips { padding-left: 0; }
+  .cw-bubble { font-size: .95rem; }
 }
-
-/* ---------- Accessibility & print ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .cw-panel, .cw-launcher, .cw-launcher-icon { transition: none; }
-  .cw-row.cw-enter, .cw-user, .cw-typing-row { animation: none; }
-  .cw-typing i { animation: cw-fade 1.2s ease-in-out infinite; transform: none; }
-  .cw-dot { animation: none; }
-}
-@keyframes cw-fade { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
-@media print { .cw-launcher, .cw-panel { display: none !important; } }
+html.cw-lock, html.cw-lock body { overflow: hidden; overscroll-behavior: none; }
+@media (max-width: 600px) and (max-height: 560px) { .cw-disclaimer { display: none; } .cw-header { padding-top: .6rem; padding-bottom: .6rem; } }
