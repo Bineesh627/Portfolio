@@ -1,8 +1,9 @@
 /* =====================================================================
    CHAT WIDGET CONFIG  (live AI via a Cloudflare Worker)
 
-   The widget POSTs  { prompt, history }  to `workerUrl` and expects
-   JSON back:  { response: "..." }.
+   The widget POSTs  { prompt, messages }  to `workerUrl` and expects
+   JSON back:  { response: "...", whatsapp?: "https://wa.me/..." }.
+   When `whatsapp` is present the chat shows a "Continue on WhatsApp" card.
    The worker source lives in /worker (it holds the model + the knowledge
    about Bineesh, so no API key ever reaches the browser).
    ===================================================================== */
@@ -17,22 +18,20 @@ SITE_DATA.chatbotData = {
   /* first message shown when the chat opens (simple HTML allowed) */
   welcome: "Hi! I'm an AI assistant trained on Bineesh S's portfolio. Ask me about his projects, skills, experience or how to work with him.",
 
-  /* contact buttons shown under the welcome message */
-  quickLinks: [
-    { url: "https://www.linkedin.com/in/bineesh627" },
-    { url: "https://github.com/Bineesh627" },
-    { url: "https://wa.me/919567314355" },
-    { url: "mailto:sbineesh172@gmail.com" }
-  ],
+  /* optional buttons under the welcome message. Left empty on purpose:
+     social links appear only when a visitor asks for them. */
+  quickLinks: [],
 
   /* tappable starter questions, shown until the first message is sent */
   suggestions: [
     "Who is Bineesh?",
-    "What projects has he built?",
+    "Can he build a website or app for me?",
+    "Show me his projects",
     "What are his main skills?",
-    "How can I contact him?",
-    "What services does he offer?",
-    "Where has he worked?"
+    "Which certificates does he have?",
+    "Where has he worked?",
+    "Show his blog posts",
+    "How can I contact him?"
   ],
 
   maxInputChars: 500,     // longest message a visitor can send

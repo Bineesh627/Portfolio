@@ -74,6 +74,10 @@
           var pr = ((S.data && S.data.projectsData) || []).filter(function (x) { return x.slug === m[3]; })[0];
           return { url: url, key: 'page', icon: 'arrow-up-right', internal: true, label: pr ? 'Case study: ' + shortTitle(pr.title) : 'View case study' };
         }
+        if (base === '/blog' && m[3]) {
+          var bl = ((S.data && S.data.blogsData) || []).filter(function (x) { return x.slug === m[3]; })[0];
+          return { url: url, key: 'page', icon: 'book-open', internal: true, label: bl ? 'Read: ' + (function (t) { return t.length > 34 ? t.slice(0, 33).replace(/\s+\S*$/, '') + '\u2026' : t; })(shortTitle(bl.title).replace(/<[^>]+>/g, '').split(':')[0]) : 'Read article' };
+        }
         if (!p) return null;
         return { url: url, key: 'page', icon: p.icon, internal: true, label: p.label };
       }
@@ -124,6 +128,7 @@
         var before = line;
         line = line.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, label, url) {            // [label](url)
           add(url, label);
+          if (/^(?:https?:\/\/(?:www\.)?bineeshs\.vercel\.app)?\/(?:project|blog|blogs|projects|certifications|contact)\b/i.test(url)) return '';   // the button says it
           return /^(?:linkedin|github|instagram|twitter|x|whatsapp|hugging ?face|facebook|youtube|web ?site|portfolio|e-?mail|link|here|contact( page)?|case study|[\w.-]+\.(?:com|in|co|app|dev|ai|org))$/i.test(label.trim()) ? '' : label;
         });
         line = line.replace(/(?:mailto:)?([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g, function (m, mail) { add('mailto:' + mail); return ''; });
@@ -154,7 +159,15 @@
       if (links.length) out.push('<div class="cw-links">' + links.map(button).join('') + '</div>');
       return out.join('');
     }
-    return { render: render, row: row };
+    /* the closing call-to-action: only a real wa.me link is accepted */
+    function whatsapp(url) {
+      if (!/^https:\/\/wa\.me\/\d{8,15}(\?[^\s"'<>]*)?$/i.test(String(url || ''))) return '';
+      return '<a class="cw-wa" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' +
+        '<span class="cw-wa-ic">' + icon('whatsapp', 'message-circle').replace(/width="\d+"/, 'width="22"').replace(/height="\d+"/, 'height="22"') + '</span>' +
+        '<span class="cw-wa-tx"><strong>Continue on WhatsApp</strong><small>Chat with Bineesh directly</small></span>' +
+        '<span class="cw-wa-go" aria-hidden="true">&rarr;</span></a>';
+    }
+    return { render: render, row: row, whatsapp: whatsapp };
   })();
 
   /* ===================================================================
@@ -276,6 +289,7 @@
     var started = false;
     var isOpen = false;
     var asked = {};           // suggestion chips already used
+    var waShown = false;      // the WhatsApp card is shown once per conversation
 
     function setBusy(v) {
       busy = v;
@@ -292,14 +306,14 @@
       return fetch(CFG.workerUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: prompt, history: recent }),
+        body: JSON.stringify({ prompt: prompt, messages: recent.concat([{ role: 'user', content: prompt }]) }),
         signal: ctrl ? ctrl.signal : undefined
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) {
           if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
           var text = (data.response || data.reply || '').toString().trim();
           if (!text) throw new Error('Empty response');
-          return text;
+          return { text: text, whatsapp: typeof data.whatsapp === 'string' ? data.whatsapp : '' };
         });
       }).then(function (text) { clearTimeout(t); return text; },
               function (err) { clearTimeout(t); throw err; });
@@ -320,11 +334,15 @@
 
       ask(text).then(function (reply) {
         if (myRun !== runId) return;
-        history.push({ role: 'user', content: text }, { role: 'assistant', content: reply });
+        history.push({ role: 'user', content: text }, { role: 'assistant', content: reply.text });
         View.removeTyping(typingRow); typingRow = null;
-        View.addMessage('assistant', reply).classList.add('cw-enter');
-        var next = (CFG.suggestions || []).filter(function (q) { return !asked[q]; }).slice(0, 3);   // follow-up ideas
-        if (next.length) chips = View.showChips(next, send);
+        var wa = reply.whatsapp && !waShown ? Format.whatsapp(reply.whatsapp) : '';
+        if (wa) waShown = true;
+        View.addMessage('assistant', reply.text, { extra: wa }).classList.add('cw-enter');
+        if (!wa) {
+          var next = (CFG.suggestions || []).filter(function (q) { return !asked[q]; }).slice(0, 3);   // follow-up ideas
+          if (next.length) chips = View.showChips(next, send);
+        }
       }).catch(function (err) {
         if (myRun !== runId) return;
         if (window.console) console.error('Chat error:', err);
@@ -332,7 +350,8 @@
         var msg = (err && err.name === 'AbortError')
           ? 'That took too long. Please try again.'
           : 'Sorry, I could not reach the AI right now. Please try again in a moment, or use the <a href="/contact">contact page</a>.';
-        View.addMessage('assistant', msg, { error: true, html: true });
+        var row = View.addMessage('assistant', msg, { error: true, html: true, extra: '<div class="cw-links"><button type="button" class="cw-btn cw-retry">Try again</button></div>' });
+        row.querySelector('.cw-retry').addEventListener('click', function () { row.remove(); var u = View.els.log.querySelectorAll('.cw-user'); if (u.length) u[u.length - 1].remove(); send(text); });
       }).then(function () {
         if (myRun !== runId) return;
         setBusy(false);
@@ -349,7 +368,7 @@
       View.clear();
       setBusy(false);
       View.addMessage('assistant', CFG.welcome || 'Hi! Ask me anything about Bineesh.', { extra: Format.row(CFG.quickLinks) }).classList.add('cw-enter');
-      asked = {};
+      asked = {}; waShown = false;
       if (CFG.suggestions && CFG.suggestions.length) chips = View.showChips(CFG.suggestions.slice(0, 4), send);
     }
 

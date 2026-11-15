@@ -126,7 +126,7 @@ body:has(.lb) .cw-launcher { display: none; }       /* never float over a full-s
 .cw-btn:focus-visible { outline: 2px solid var(--b); outline-offset: 2px; }
 .cw-btn-ic { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: #fff; background: var(--b); flex: none; }
 .cw-btn-ic svg { width: 14px; height: 14px; }
-.cw-btn-tx { overflow: hidden; text-overflow: ellipsis; max-width: 190px; }
+.cw-btn-tx { overflow: hidden; text-overflow: ellipsis; max-width: 240px; }
 .cw-btn-linkedin    { --b: #0a66c2; }
 .cw-btn-github      { --b: #6e5494; }
 .cw-btn-whatsapp    { --b: #1faa59; }
@@ -217,7 +217,24 @@ body:has(.lb) .cw-launcher { display: none; }       /* never float over a full-s
   .cw-chips { padding-left: 0; }
   .cw-bubble { font-size: .95rem; max-width: 90%; }
   .cw-btn { min-height: 42px; font-size: .84rem; }
-  .cw-btn-tx { max-width: 160px; }
+  .cw-btn-tx { max-width: 220px; }
 }
 html.cw-lock, html.cw-lock body { overflow: hidden; overscroll-behavior: none; }
 @media (max-width: 600px) and (max-height: 560px) { .cw-disclaimer { display: none; } .cw-header { padding-top: .6rem; padding-bottom: .6rem; } }
+
+/* ---- WhatsApp closing card + retry ---- */
+.cw-wa {
+  display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 12px 14px;
+  border-radius: 14px; text-decoration: none; color: #fff;
+  background: linear-gradient(135deg, #25d366, #128c4a);
+  box-shadow: 0 6px 18px rgba(18, 140, 74, .35);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.cw-wa:hover, .cw-wa:focus-visible { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(18, 140, 74, .45); }
+.cw-wa-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.2); flex: none; }
+.cw-wa-ic svg { fill: currentColor; }
+.cw-wa-tx { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; flex: 1; }
+.cw-wa-tx strong { font-size: .95rem; }
+.cw-wa-tx small { font-size: .76rem; opacity: .9; }
+.cw-wa-go { font-size: 1.2rem; flex: none; }
+.cw-retry { cursor: pointer; font: inherit; }
