@@ -1,0 +1,2 @@
+{ "name": "bineesh-portfolio", "private": true,
+  "scripts": { "start": "node dev-server.js", "build": "cd build && npm install && node build.js" } }

@@ -20,23 +20,128 @@
 
   /* ===================================================================
      1. FORMAT — model output is untrusted: escape first, then re-add
-        only a few safe constructs (links, bold, bullet lists).
+        only a few safe constructs. Every link in a reply (website, social
+        profile, e-mail, phone, site page) is pulled out of the text and
+        shown as a tappable BUTTON with an icon under the message.
      =================================================================== */
   var Format = (function () {
+    var S = window.Site || {};
+    var MAX_BUTTONS = 6;
+    var PAGE = '\\/(?:projects?|blogs?|certifications|contact)(?:\\?slug=[a-z0-9-]+)?';
+
+    /* known sites -> label, colour and icon (brand icons come from Site.brand) */
+    var SITES = [
+      { re: /(^|\.)linkedin\.com$/i,         key: 'linkedin',    label: 'LinkedIn' },
+      { re: /(^|\.)github\.com$/i,           key: 'github',      label: 'GitHub', icon: 'github' },
+      { re: /(^|\.)instagram\.com$/i,        key: 'instagram',   label: 'Instagram' },
+      { re: /(^|\.)(twitter|x)\.com$/i,      key: 'twitter',     label: 'X (Twitter)', icon: 'twitter' },
+      { re: /(^|\.)huggingface\.co$/i,       key: 'huggingface', label: 'Hugging Face' },
+      { re: /^wa\.me$|(^|\.)whatsapp\.com$/i, key: 'whatsapp',   label: 'WhatsApp' },
+      { re: /(^|\.)facebook\.com$/i,         key: 'facebook',    label: 'Facebook' },
+      { re: /(^|\.)(youtube\.com|youtu\.be)$/i, key: 'youtube',  label: 'YouTube' }
+    ];
+    var PAGES = {
+      '/projects':       { label: 'All projects',   icon: 'folder-open' },
+      '/blogs':          { label: 'Blog',           icon: 'book-open' },
+      '/blog':           { label: 'Read article',   icon: 'book-open' },
+      '/certifications': { label: 'Certifications', icon: 'award' },
+      '/contact':        { label: 'Contact page',   icon: 'message-circle' }
+    };
+    var GENERIC = { mail: { label: 'Email', icon: 'mail' }, phone: { label: 'Call', icon: 'phone' }, web: { label: 'Website', icon: 'globe' }, page: { icon: 'arrow-up-right' } };
+
     function esc(t) {
       return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
-    function inline(t) {
-      t = esc(t);
-      t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-      t = t.replace(/(^|[\s(])(https?:\/\/[^\s<)]+[^\s<).,;:!?])/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
-      t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-      return t;
+    function icon(key, iconName) {
+      var size = 16;
+      if (S.brand && S.brand[key]) return S.brand[key](size);
+      return S.ic ? S.ic(iconName || GENERIC.web.icon, size) : '';
     }
+    function shortTitle(t) { return String(t).split(/\s[—–-]\s/)[0]; }
+    function goodLabel(l) { return l && l.length <= 24 && !/https?:|www\./i.test(l); }
+
+    /* turn a url (+ optional label) into a button description, or null if not allowed */
+    function classify(url, label) {
+      url = String(url).trim();
+      var own = url.match(/^https?:\/\/(?:www\.)?bineeshs\.vercel\.app(\/.*)?$/i);
+      if (own) url = own[1] || '/';
+
+      if (url.charAt(0) === '/') {                                   // a page of this site
+        var m = url.match(/^(\/[a-z]+)(\?slug=([a-z0-9-]+))?$/i);
+        if (!m) return null;
+        var base = m[1].toLowerCase(), p = PAGES[base];
+        if (base === '/project' && m[3]) {
+          var pr = ((S.data && S.data.projectsData) || []).filter(function (x) { return x.slug === m[3]; })[0];
+          return { url: url, key: 'page', icon: 'arrow-up-right', internal: true, label: pr ? 'Case study: ' + shortTitle(pr.title) : 'View case study' };
+        }
+        if (!p) return null;
+        return { url: url, key: 'page', icon: p.icon, internal: true, label: p.label };
+      }
+      if (/^mailto:/i.test(url)) return { url: url, key: 'mail', icon: 'mail', label: 'Email', title: url.slice(7) };
+      if (/^tel:/i.test(url))    return { url: url, key: 'phone', icon: 'phone', label: label || 'Call' };
+      if (!/^https?:\/\//i.test(url)) return null;                  // blocks javascript:, data:, etc.
+
+      var host;
+      try { host = new URL(url).hostname.replace(/^www\./, ''); } catch (e) { return null; }
+      for (var i = 0; i < SITES.length; i++) {
+        if (SITES[i].re.test(host)) {
+          return { url: url, key: SITES[i].key, icon: SITES[i].icon, label: goodLabel(label) ? label : SITES[i].label };
+        }
+      }
+      return { url: url, key: 'web', icon: 'globe', label: goodLabel(label) ? label : host };
+    }
+
+    function button(l) {
+      return '<a class="cw-btn cw-btn-' + l.key + '" href="' + esc(l.url) + '"' +
+        (l.internal ? '' : ' target="_blank" rel="noopener noreferrer"') +
+        (l.title ? ' title="' + esc(l.title) + '"' : '') + '>' +
+        '<span class="cw-btn-ic">' + icon(l.key, l.icon) + '</span><span class="cw-btn-tx">' + esc(l.label) + '</span></a>';
+    }
+
+    /* a row of buttons for a list of urls (used for the welcome message) */
+    function row(items) {
+      var html = (items || []).map(function (it) {
+        var l = classify(it.url, it.label); return l ? button(l) : '';
+      }).join('');
+      return html ? '<div class="cw-links">' + html + '</div>' : '';
+    }
+
+    var BARE = /^[\s\-*•\d.)]*(?:linkedin|github|instagram|twitter|x|whatsapp|hugging ?face|facebook|youtube|website|web ?site|portfolio|e-?mail|mail|phone|contact|link|links|socials?|profiles?)?[\s:,\-–—]*$/i;
+
+    function inline(t) { return esc(t).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>'); }
+
     function render(text) {
-      var out = [], list = false;
+      var links = [], seen = {};
+      function add(url, label) {
+        var l = classify(url, label);
+        if (!l || seen[l.url]) return;
+        seen[l.url] = 1;
+        if (links.length < MAX_BUTTONS) links.push(l);
+      }
+
+      var lines = [];
       String(text).replace(/\r/g, '').split('\n').forEach(function (line) {
-        var m = line.match(/^\s*(?:[-*\u2022]|\d+[.)])\s+(.*)$/);
+        var before = line;
+        line = line.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, label, url) {            // [label](url)
+          add(url, label);
+          return /^(?:linkedin|github|instagram|twitter|x|whatsapp|hugging ?face|facebook|youtube|web ?site|portfolio|e-?mail|link|here|contact( page)?|case study|[\w.-]+\.(?:com|in|co|app|dev|ai|org))$/i.test(label.trim()) ? '' : label;
+        });
+        line = line.replace(/(?:mailto:)?([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g, function (m, mail) { add('mailto:' + mail); return ''; });
+        line = line.replace(/https?:\/\/[^\s<>()]+[^\s<>().,;:!?]/g, function (u) { add(u); return ''; });
+        line = line.replace(new RegExp('(^|[\\s(])(' + PAGE + ')(?=[\\s).,;:!?]|$)', 'g'), function (m, pre, path) { add(path); return pre; });
+        line = line.replace(/\+\d[\d\s-]{8,}\d/g, function (num) { add('tel:' + num.replace(/[^\d+]/g, ''), 'Call ' + num.trim()); return num; });
+
+        if (line !== before) {                                                                  // tidy what the removed links left behind
+          line = line.replace(/\(\s*\)/g, '').replace(/\s+([,.;:!?])/g, '$1').replace(/\s{2,}/g, ' ')
+                     .replace(/(?:\s+(?:at|on|via|from|here|is|are|and|or))*[\s:,\-–—]*$/i, '').trimEnd();
+          if (BARE.test(line)) return;
+        }
+        lines.push(line);
+      });
+
+      var out = [], list = false;
+      lines.forEach(function (line) {
+        var m = line.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)$/);
         if (m) {
           if (!list) { out.push('<ul>'); list = true; }
           out.push('<li>' + inline(m[1]) + '</li>');
@@ -46,9 +151,10 @@
         if (line.trim()) out.push('<p>' + inline(line.trim()) + '</p>');
       });
       if (list) out.push('</ul>');
+      if (links.length) out.push('<div class="cw-links">' + links.map(button).join('') + '</div>');
       return out.join('');
     }
-    return { render: render };
+    return { render: render, row: row };
   })();
 
   /* ===================================================================
@@ -118,6 +224,7 @@
       var bubble = el('div', 'cw-bubble');
       if (opts && opts.error) bubble.classList.add('cw-error');
       if (role === 'assistant') bubble.innerHTML = (opts && opts.html) ? content : Format.render(content); else bubble.textContent = content;
+      if (opts && opts.extra) bubble.insertAdjacentHTML('beforeend', opts.extra);
       row.appendChild(bubble);
       els.log.appendChild(row);
       scrollToBottom();
@@ -168,6 +275,7 @@
     var busy = false;
     var started = false;
     var isOpen = false;
+    var asked = {};           // suggestion chips already used
 
     function setBusy(v) {
       busy = v;
@@ -203,6 +311,7 @@
       text = text.slice(0, CFG.maxInputChars || 500);
 
       if (chips) { chips.remove(); chips = null; }
+      asked[text] = true;
       View.els.input.value = '';
       View.addMessage('user', text);
       setBusy(true);
@@ -214,6 +323,8 @@
         history.push({ role: 'user', content: text }, { role: 'assistant', content: reply });
         View.removeTyping(typingRow); typingRow = null;
         View.addMessage('assistant', reply).classList.add('cw-enter');
+        var next = (CFG.suggestions || []).filter(function (q) { return !asked[q]; }).slice(0, 3);   // follow-up ideas
+        if (next.length) chips = View.showChips(next, send);
       }).catch(function (err) {
         if (myRun !== runId) return;
         if (window.console) console.error('Chat error:', err);
@@ -237,8 +348,9 @@
       started = true;
       View.clear();
       setBusy(false);
-      View.addMessage('assistant', CFG.welcome || 'Hi! Ask me anything about Bineesh.', { html: false }).classList.add('cw-enter');
-      if (CFG.suggestions && CFG.suggestions.length) chips = View.showChips(CFG.suggestions, send);
+      View.addMessage('assistant', CFG.welcome || 'Hi! Ask me anything about Bineesh.', { extra: Format.row(CFG.quickLinks) }).classList.add('cw-enter');
+      asked = {};
+      if (CFG.suggestions && CFG.suggestions.length) chips = View.showChips(CFG.suggestions.slice(0, 4), send);
     }
 
     /* keep the panel inside the visible viewport (shrinks when the keyboard opens) */
@@ -281,6 +393,10 @@
       var e = View.build();
       e.launcher.addEventListener('click', function () { isOpen ? close() : open(); });
       e.close.addEventListener('click', close);
+      e.log.addEventListener('click', function (ev) {                 // internal link inside a reply: the router opens it, we get out of the way on phones
+        var a = ev.target.closest && ev.target.closest('a[href^="/"]');
+        if (a && mq && mq.matches) close();
+      });
       e.newChat.addEventListener('click', start);
       e.send.addEventListener('click', function () { send(e.input.value); });
       e.input.addEventListener('keydown', function (ev) {

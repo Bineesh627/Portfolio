@@ -108,13 +108,11 @@ Developer portfolio of Bineesh S: Tech-Driven Innovator, Tech Entrepreneur, AI E
 * **Description**: A full retail website for Gate Hypermarket in Dubai and Ajman: weekly digital flyers, store locator, blog, careers portal with online applications, and an admin panel to manage all content and SEO without code.
 * **Tech**: React, Vite, Tailwind CSS, CMS Admin Panel, SEO, Responsive Design
 * **Live**: https://www.gateuae.com/
-* **GitHub**: https://github.com/Bineesh627/Gate-Hypermarket
 * **Case Study**: https://bineeshs.vercel.app/project?slug=gate-hypermarket
 
 ### CorePro Sales Hub — Sales CRM Platform (ID: 10)
 * **Description**: A role-based sales CRM for CorePro Techno: lead management with CSV/Excel import, monthly target tracking for sales executives, and a live team dashboard for managers and admins.
 * **Tech**: TanStack Start, React 19, TypeScript, Tailwind CSS, Firebase, Firestore, Recharts, Zod
-* **GitHub**: https://github.com/Bineesh627/sale-crm
 * **Case Study**: https://bineeshs.vercel.app/project?slug=corepro-sales-hub
 
 ### UpliXo — Career Readiness & Consulting Platform (ID: 11)

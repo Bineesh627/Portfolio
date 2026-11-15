@@ -13,6 +13,8 @@ SITE_DATA.experienceData = [
     title: "Co-founder & CTO",
     company: "Fitaval",
     link: "https://www.fitaval.com/",
+    employmentType: "Part-time",
+    workMode: "Hybrid",
     description: "Co-founded Fitaval, a multi-tenant fitness business platform, and lead its technology: mobile app, gym management CRM, and super-admin platform. Responsible for product architecture, engineering and the technical roadmap.",
     date: "August 2026 - Present"
   },

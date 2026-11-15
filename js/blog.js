@@ -5,8 +5,7 @@
   var FALLBACK_W = 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200';
   var FALLBACK_S = 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800';
 
-  var slug = new URLSearchParams(location.search).get('slug');
-  var post = D.blogsData.filter(function (p) { return p.slug === slug; })[0];
+  var slug, post;
 
   function notFound() {
     S.setMetadata({
@@ -34,6 +33,8 @@
   }
 
   function render() {
+    slug = new URLSearchParams(location.search).get('slug');
+    post = D.blogsData.filter(function (p) { return p.slug === slug; })[0];
     if (!post) { notFound(); return; }
 
     var meta = D.blogsMetadata[slug] || {};
@@ -76,13 +77,14 @@
       '<div class="toast-x" id="share-toast" hidden>' + ic('check', 16) + ' Link copied to clipboard</div>';
 
     S.refreshIcons();
-    window.scrollTo(0, 0);
 
     var bar = document.getElementById('read-bar');
-    window.addEventListener('scroll', function () {
+    function onScroll() {
       var total = document.documentElement.scrollHeight - window.innerHeight;
       if (total > 0) bar.style.width = ((window.scrollY / total) * 100) + '%';
-    });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    S.cleanup(function () { window.removeEventListener('scroll', onScroll); });
 
     var cover = document.getElementById('post-cover');
     if (cover) cover.addEventListener('click', function () { openLightbox(post.cover_image_url); });
@@ -103,6 +105,5 @@
     });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-  else render();
+  S.page('blog', render);
 })();

@@ -17,12 +17,22 @@ SITE_DATA.chatbotData = {
   /* first message shown when the chat opens (simple HTML allowed) */
   welcome: "Hi! I'm an AI assistant trained on Bineesh S's portfolio. Ask me about his projects, skills, experience or how to work with him.",
 
+  /* contact buttons shown under the welcome message */
+  quickLinks: [
+    { url: "https://www.linkedin.com/in/bineesh627" },
+    { url: "https://github.com/Bineesh627" },
+    { url: "https://wa.me/919567314355" },
+    { url: "mailto:sbineesh172@gmail.com" }
+  ],
+
   /* tappable starter questions, shown until the first message is sent */
   suggestions: [
     "Who is Bineesh?",
     "What projects has he built?",
     "What are his main skills?",
-    "How can I contact him?"
+    "How can I contact him?",
+    "What services does he offer?",
+    "Where has he worked?"
   ],
 
   maxInputChars: 500,     // longest message a visitor can send

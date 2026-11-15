@@ -11,7 +11,7 @@ const KNOWLEDGE_TEXT = `
 ## Current Roles & Ventures
 - Fusintech (Dec 2025 - Present): Founder & CEO. An EdTech platform using AI for personalized learning. Website: https://www.fusintech.com
 - Corepro Techno LLP (Mar 2026 - Present): Co-founder & Chief AI Officer (CAIO), Malappuram, Kerala. Leads AI strategy, product innovation and AI-powered software. Website: https://www.coreprotechno.com
-- Fitaval (Aug 2026 - Present): Co-founder & CTO. A multi-tenant fitness business platform with a member mobile app (Flutter), gym management CRM and super-admin console (React). Website: https://www.fitaval.com
+- Fitaval (Aug 2026 - Present): Co-founder & CTO, part-time, hybrid work mode. A multi-tenant fitness business platform with a member mobile app (Flutter), gym management CRM and super-admin console (React). Website: https://www.fitaval.com
 
 ## Past Experience
 - Pydart Intelli Corp Pvt Ltd (Mar 2026 - Aug 2026): Video Editor & AI Content Creator, part-time remote. Worked on AI video generation, image-generation integration and image-fade animations.

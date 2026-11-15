@@ -7,7 +7,6 @@ SITE_DATA.projectsData.push({
   description: "A full retail website for Gate Hypermarket in Dubai and Ajman: weekly digital flyers, store locator, blog, careers portal with online applications, and an admin panel to manage all content and SEO without code.",
   image: "assets/img/projects/new/gate-hero.webp",
   tags: ["React", "Vite", "Tailwind CSS", "CMS Admin Panel", "SEO", "Responsive Design"],
-  githubUrl: "https://github.com/Bineesh627/Gate-Hypermarket",
   liveUrl: "https://www.gateuae.com/",
   caseStudyContent: `
 <h1>Gate Hypermarket: A Retail Website the Team Can Run Themselves</h1>

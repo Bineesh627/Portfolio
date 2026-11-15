@@ -43,7 +43,7 @@
   function initHero() {
     var roles = P.hero.roles;
     var el = document.getElementById('typed-role');
-    var loop = 0, deleting = false, text = '', delta = 180;
+    var loop = 0, deleting = false, text = '', delta = 180, tid;
     function tick() {
       var full = roles[loop % roles.length];
       text = deleting ? full.substring(0, text.length - 1) : full.substring(0, text.length + 1);
@@ -51,8 +51,9 @@
       delta = deleting ? 50 : 110;
       if (!deleting && text === full) { deleting = true; delta = 1800; }
       else if (deleting && text === '') { deleting = false; loop++; delta = 400; }
-      setTimeout(tick, delta);
+      tid = setTimeout(tick, delta);
     }
+    S.cleanup(function () { clearTimeout(tid); });
     tick();
   }
 
@@ -190,6 +191,7 @@
       function start() { timer = setInterval(function () { show((cur + 1) % slides.length); }, 4000); }
       dots.forEach(function (d, i) { d.addEventListener('click', function () { clearInterval(timer); show(i); start(); }); });
       start();
+      S.cleanup(function () { clearInterval(timer); });
     });
   }
 
@@ -353,6 +355,5 @@
     S.refreshIcons();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-  else render();
+  S.page('home', render);
 })();

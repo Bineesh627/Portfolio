@@ -27,6 +27,5 @@
     S.refreshIcons();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-  else render();
+  S.page('projects', render);
 })();

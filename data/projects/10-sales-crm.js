@@ -7,7 +7,6 @@ SITE_DATA.projectsData.push({
   description: "A role-based sales CRM for CorePro Techno: lead management with CSV/Excel import, monthly target tracking for sales executives, and a live team dashboard for managers and admins.",
   image: "assets/img/projects/new/cover-salescrm.webp",
   tags: ["TanStack Start", "React 19", "TypeScript", "Tailwind CSS", "Firebase", "Firestore", "Recharts", "Zod"],
-  githubUrl: "https://github.com/Bineesh627/sale-crm",
   caseStudyContent: `
 <h1>CorePro Sales Hub: Sales CRM Platform for Growing Teams</h1>
 <p>CorePro Sales Hub is the internal CRM built for <strong>CorePro Techno</strong>. Small sales teams usually juggle spreadsheets, chat threads and memory; this project replaces that with one fast workspace where leads, follow-ups and monthly targets live together.</p>

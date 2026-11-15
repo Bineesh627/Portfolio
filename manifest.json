@@ -1,11 +1,26 @@
 {
+  "id": "/",
   "name": "Bineesh S — AI Developer, Cybersecurity Expert & Tech Entrepreneur",
   "short_name": "Bineesh S",
   "description": "Portfolio of Bineesh S: projects, certifications and blog on AI, cybersecurity and entrepreneurship.",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
-  "theme_color": "#2563eb",
-  "background_color": "#000000",
-  "lang": "en-IN"
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "theme_color": "#070a14",
+  "background_color": "#070a14",
+  "lang": "en-IN",
+  "categories": ["portfolio", "business", "technology"],
+  "icons": [
+    { "src": "/assets/img/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/pwa/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Projects", "url": "/projects", "icons": [{ "src": "/assets/img/pwa/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Blog", "url": "/blogs", "icons": [{ "src": "/assets/img/pwa/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Contact", "url": "/contact", "icons": [{ "src": "/assets/img/pwa/icon-192.png", "sizes": "192x192" }] }
+  ]
 }

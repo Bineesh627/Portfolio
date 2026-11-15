@@ -16,16 +16,17 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  // Lucide icon placeholder (swapped for <svg> by lucide.createIcons)
+  // Inline SVG icon from the generated set (js/icons.js). No icon library at runtime.
   function ic(name, size, cls, extra) {
     size = size || 16;
-    return '<i data-lucide="' + name + '" width="' + size + '" height="' + size + '"' +
-      (cls ? ' class="' + cls + '"' : '') + (extra ? ' ' + extra : '') + '></i>';
+    var body = (window.SITE_ICONS || {})[name];
+    if (!body) { if (window.console) console.warn('Missing icon:', name); return ''; }
+    return '<svg xmlns="http://www.w3.org/2000/svg" class="lucide' + (cls ? ' ' + cls : '') + '" width="' + size + '" height="' + size +
+      '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' +
+      (extra ? ' ' + extra : '') + '>' + body + '</svg>';
   }
 
-  function refreshIcons() {
-    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-  }
+  function refreshIcons() { /* icons are already inline SVG; kept so page scripts need no change */ }
 
   // Brand icons not present in Lucide (from react-icons: Simple Icons / Font Awesome)
   var BRAND = {
@@ -124,6 +125,7 @@
             '<ul class="navbar-nav mx-auto mb-2 mb-lg-0">' + links + '</ul>' +
             '<div class="nav-actions d-flex align-items-center gap-2">' +
               '<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light or dark theme">' + ic('sun', 18, 'icon-sun') + ic('moon', 18, 'icon-moon') + '</button>' +
+              '<button class="theme-toggle" id="install-btn" type="button" hidden aria-label="Install app" title="Install app">' + ic('download', 18) + '</button>' +
               '<a href="/contact" class="btn-brand">Let’s talk</a>' +
             '</div>' +
           '</div>' +
@@ -187,22 +189,68 @@
     '</div></div>';
   }
 
-  /* ---------- boot ---------- */
+  /* ---------- active nav link (called by the router on every navigation) ---------- */
+  var NAV_OF = { home: 'home', projects: 'projects', project: 'projects', certifications: 'certifications', blogs: 'blogs', blog: 'blogs', contact: 'contact' };
+  function setActive(page) {
+    var key = NAV_OF[page] || '';
+    document.querySelectorAll('.site-nav .nav-link').forEach(function (a, i) {
+      var on = NAV[i] && NAV[i].key === key;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    var menu = document.getElementById('mainNav');           // close the mobile menu after navigating
+    if (menu && menu.classList.contains('show')) {
+      menu.classList.remove('show');
+      var t = document.querySelector('.navbar-toggler'); if (t) { t.setAttribute('aria-expanded', 'false'); t.classList.add('collapsed'); }
+    }
+  }
+
+  /* ---------- mobile menu toggle (replaces the 80 KB Bootstrap JS bundle) ---------- */
+  function initNavToggle() {
+    var t = document.querySelector('.navbar-toggler'), menu = document.getElementById('mainNav');
+    if (!t || !menu) return;
+    t.addEventListener('click', function () {
+      var open = menu.classList.toggle('show');
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      t.classList.toggle('collapsed', !open);
+    });
+  }
+
+  /* ---------- "Install app" button (PWA) ---------- */
+  var installEvent = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); installEvent = e;
+    var b = document.getElementById('install-btn'); if (b) b.hidden = false;
+  });
+  window.addEventListener('appinstalled', function () {
+    installEvent = null; var b = document.getElementById('install-btn'); if (b) b.hidden = true;
+  });
+  function initInstall() {
+    var b = document.getElementById('install-btn'); if (!b) return;
+    b.hidden = !installEvent;
+    b.addEventListener('click', function () {
+      if (!installEvent) return;
+      installEvent.prompt();
+      installEvent.userChoice.then(function () { installEvent = null; b.hidden = true; });
+    });
+  }
+
+  /* ---------- page registry + cleanup (used by router.js and the page scripts) ---------- */
+  var pages = {};
+  function page(name, fn) { pages[name] = fn; }
+
+  /* ---------- boot: draw nav + footer ONCE; the router swaps only <main> ---------- */
   function boot() {
-    var page = document.body.getAttribute('data-page') || 'home';
     var navHost = document.getElementById('site-nav');
     var footHost = document.getElementById('site-footer');
-    if (navHost) navHost.innerHTML = renderNav(page);
+    if (navHost) navHost.innerHTML = renderNav('');
     if (footHost) footHost.innerHTML = renderFooter();
-    initTheme();
-    refreshIcons();
+    initTheme(); initNavToggle(); initInstall();
   }
 
   window.Site = {
     data: D, esc: esc, ic: ic, brand: BRAND, refreshIcons: refreshIcons, setMetadata: setMetadata,
-    formatLongDate: formatLongDate, humanize: humanize, socialRow: socialRow, notFoundWindow: notFoundWindow
+    formatLongDate: formatLongDate, humanize: humanize, socialRow: socialRow, notFoundWindow: notFoundWindow,
+    pages: pages, page: page, setActive: setActive, boot: boot
   };
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
 })();

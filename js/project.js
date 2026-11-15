@@ -4,18 +4,10 @@
   var S = window.Site, D = S.data, ic = S.ic, esc = S.esc;
 
   var FALLBACK = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600';
-  var params = new URLSearchParams(location.search);
-  var slug = params.get('slug');
-  var legacyId = params.get('id');          // old links: /project?id=N -> redirect to the slug URL
-  var project = D.projectsData.filter(function (p) {
-    return slug ? p.slug === slug : (legacyId && p.id === parseInt(legacyId, 10));
-  })[0];
-  if (project && !slug && window.history && history.replaceState) {
-    history.replaceState(null, '', '/project?slug=' + project.slug + location.hash);
-  }
-  var id = project ? project.id : null;     // metadata is keyed by numeric id
+  var project, id;
 
   var active = null, zoomed = false;
+
 
   function notFound() {
     S.setMetadata({
@@ -61,6 +53,18 @@
   function prev() { active = (active - 1 + project.gallery.length) % project.gallery.length; zoomed = false; paintLightbox(); }
 
   function render() {
+    var params = new URLSearchParams(location.search);
+    var slug = params.get('slug');
+    var legacyId = params.get('id');          // old links: /project?id=N -> redirect to the slug URL
+    project = D.projectsData.filter(function (p) {
+      return slug ? p.slug === slug : (legacyId && p.id === parseInt(legacyId, 10));
+    })[0];
+    if (project && !slug && window.history && history.replaceState) {
+      history.replaceState(null, '', '/project?slug=' + project.slug);
+    }
+    id = project ? project.id : null;         // metadata is keyed by numeric id
+    active = null; zoomed = false;
+
     if (!project) { notFound(); return; }
 
     var meta = D.projectsMetadata[id] || {};
@@ -95,8 +99,6 @@
           '<div class="col-lg-4 order-lg-2"><aside class="card-x cs-side">' +
             '<h4>' + ic('layers', 18, 'text-primary-x') + ' Project details</h4>' +
             '<div class="spec-row"><span class="k">Project name</span><span class="v">' + esc(project.title) + '</span></div>' +
-            (project.liveUrl ? '<div class="spec-row"><span class="k">Live website</span><a class="v" href="' + project.liveUrl + '" target="_blank" rel="noopener noreferrer">' + esc(project.liveUrl.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')) + ' ' + ic('external-link', 13) + '</a></div>' : '') +
-            (project.githubUrl ? '<div class="spec-row"><span class="k">Repository</span><a class="v" href="' + project.githubUrl + '" target="_blank" rel="noopener noreferrer">View on GitHub ' + ic('external-link', 13) + '</a></div>' : '') +
             specs +
             '<div class="spec-row"><span class="k">Tech stack</span><div class="tag-row mt-1">' + project.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('') + '</div></div>' +
             (project.liveUrl ? '<a href="' + project.liveUrl + '" target="_blank" rel="noopener noreferrer" class="btn-brand w-100 justify-content-center mt-3">' + ic('globe', 18) + ' Visit live website</a>' : '') +
@@ -131,14 +133,15 @@
     });
     img.addEventListener('error', function () { img.src = FALLBACK; });
 
-    window.addEventListener('keydown', function (e) {
+    function onKey(e) {
       if (active === null) return;
       if (e.key === 'Escape') closeLb();
       if (e.key === 'ArrowRight') next();
       if (e.key === 'ArrowLeft') prev();
-    });
+    }
+    window.addEventListener('keydown', onKey);
+    S.cleanup(function () { window.removeEventListener('keydown', onKey); });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-  else render();
+  S.page('project', render);
 })();

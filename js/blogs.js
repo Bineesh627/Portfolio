@@ -47,6 +47,8 @@
   }
 
   function render() {
+    selected = null;
+    S.cleanup(function () { if (observer) { observer.disconnect(); observer = null; } });
     S.setMetadata(D.pagesMetadata.blogs);
     var cats = [];
     D.blogsData.forEach(function (p) { if (cats.indexOf(p.category) === -1) cats.push(p.category); });
@@ -74,6 +76,5 @@
     paint();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-  else render();
+  S.page('blogs', render);
 })();
