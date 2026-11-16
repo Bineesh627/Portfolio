@@ -281,7 +281,9 @@ const CHUNKS = [
  }
 ];
 
-const DEFAULT_MODEL = "@cf/meta/llama-3.1-8b-instruct";
+const DEFAULT_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
+/* Tried in order if one is retired or fails (Cloudflare deprecates models from time to time). */
+const FALLBACK_MODELS = ["@cf/meta/llama-3.3-70b-instruct-fp8-fast", "@cf/meta/llama-3.2-3b-instruct", "@cf/meta/llama-3.2-1b-instruct"];
 const MAX_PROMPT_CHARS = 500;
 const MAX_HISTORY = 10;
 const MAX_DETAIL_CHUNKS = 4;
@@ -407,11 +409,12 @@ export default {
     const system = SYSTEM_PROMPT.replace("{{KNOWLEDGE}}", knowledge);
 
     try {
-      const out = await env.AI.run(env.MODEL || DEFAULT_MODEL, {
-        messages: [{ role: "system", content: system }, ...turns],
-        max_tokens: 420,
-        temperature: 0.35,
-      });
+      const payload = { messages: [{ role: "system", content: system }, ...turns], max_tokens: 420, temperature: 0.35 };
+      let out, lastErr;
+      for (const model of [...new Set([env.MODEL, DEFAULT_MODEL, ...FALLBACK_MODELS].filter(Boolean))]) {
+        try { out = await env.AI.run(model, payload); lastErr = null; break; } catch (e) { lastErr = e; }
+      }
+      if (lastErr) throw lastErr;
 
       const raw = out && (out.response || (out.result && out.result.response) || (out.choices && out.choices[0] && out.choices[0].message && out.choices[0].message.content));
       let text = String(raw || "").trim();

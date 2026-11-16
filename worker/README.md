@@ -17,4 +17,4 @@ SEO data (`data/metadata.js`) and sample testimonials are never included.
 ## API
 `POST { prompt, messages }` -> `{ response, whatsapp? }`. `whatsapp` is a wa.me link (pre-filled with the visitor's need) returned when the conversation reaches the closing step; the site shows it as a button.
 
-Optional variables: `ALLOWED_ORIGINS` (comma list), `MODEL` (default `@cf/meta/llama-3.1-8b-instruct`; `@cf/meta/llama-3.3-70b-instruct-fp8-fast` is smarter).
+Optional variables: `ALLOWED_ORIGINS` (comma list), `MODEL` (default `@cf/meta/llama-3.1-8b-instruct-fp8`, with automatic fallback to other models if one is retired; `@cf/meta/llama-3.3-70b-instruct-fp8-fast` is smarter).

@@ -57,10 +57,6 @@ body:has(.lb) .cw-launcher { display: none; }       /* never float over a full-s
   background: var(--grad, linear-gradient(120deg, #5b4bff, #a24bff));
 }
 .cw-avatar { position: relative; width: 44px; height: 44px; border-radius: 15px; box-shadow: 0 6px 16px rgba(91, 75, 255, .4); }
-.cw-avatar::after {                         /* online dot */
-  content: ""; position: absolute; right: -3px; bottom: -3px; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--success, #12a150); border: 2px solid var(--surface, #fff);
-}
 .cw-title { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; flex: 1; }
 .cw-title strong { font-size: 1rem; font-weight: 700; letter-spacing: -.01em; }
 .cw-status { display: inline-flex; align-items: center; gap: .35rem; font-size: .75rem; color: var(--muted, #6a6f94); }

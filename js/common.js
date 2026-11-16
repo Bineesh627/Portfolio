@@ -152,7 +152,7 @@
 
   function socialRow(size) {
     return '<div class="social-row">' + P.socials.map(function (s) {
-      return '<a href="' + s.url + '" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="' + esc(s.label) + '" title="' + esc(s.label) + '">' + socialIcon(s.icon, size) + '</a>';
+      return '<a href="' + s.url + '" target="_blank" rel="noopener noreferrer" class="social-link social-' + esc(s.icon) + '" aria-label="' + esc(s.label) + '" title="' + esc(s.label) + '">' + socialIcon(s.icon, size) + '</a>';
     }).join('') + '</div>';
   }
 

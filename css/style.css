@@ -366,7 +366,8 @@ img { max-width: 100%; }
 .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; color: var(--muted); margin-bottom: 1.5rem; }
 .back-link:hover { color: var(--primary); }
 .cs-title { font-size: clamp(1.9rem, 4vw, 2.9rem); margin: 0.5rem 0 1rem; }
-.cs-side { padding: 1.5rem; position: sticky; top: 90px; }
+.cs-side { padding: 1.5rem; position: static; }
+@media (min-width: 992px) { .cs-side { position: sticky; top: 90px; align-self: flex-start; } }
 .cs-side h4 { font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
 .spec-row { padding: 0.7rem 0; border-top: 1px solid var(--border); }
 .spec-row .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; display: block; margin-bottom: 0.2rem; }
@@ -775,3 +776,13 @@ svg.lucide { flex: none; vertical-align: -0.125em; }
 }
 @media (prefers-reduced-motion: reduce) { .lb-hint { animation: none; } }
 .stars svg { fill: currentColor; }
+
+/* ---------- Brand colours on hover for my own social links (hero + footer) ---------- */
+.social-link:hover, .social-link:focus-visible { color: #fff; border-color: transparent; }
+.social-github:hover, .social-github:focus-visible { background: #6e5494; box-shadow: 0 10px 22px rgba(110, 84, 148, .45); }
+.social-linkedin:hover, .social-linkedin:focus-visible { background: #0a66c2; box-shadow: 0 10px 22px rgba(10, 102, 194, .45); }
+.social-huggingface:hover, .social-huggingface:focus-visible { background: #ff9d00; box-shadow: 0 10px 22px rgba(255, 157, 0, .45); }
+.social-twitter:hover, .social-twitter:focus-visible { background: #1d9bf0; box-shadow: 0 10px 22px rgba(29, 155, 240, .45); }
+.social-instagram:hover, .social-instagram:focus-visible { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); box-shadow: 0 10px 22px rgba(221, 42, 123, .45); }
+.social-whatsapp:hover, .social-whatsapp:focus-visible { background: #25d366; box-shadow: 0 10px 22px rgba(37, 211, 102, .45); }
+.social-mail:hover, .social-mail:focus-visible { background: #ea4335; box-shadow: 0 10px 22px rgba(234, 67, 53, .45); }
