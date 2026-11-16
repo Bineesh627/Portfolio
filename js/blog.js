@@ -42,7 +42,8 @@
       title: meta.title || post.title,
       description: meta.description || post.excerpt,
       keywords: meta.keywords || (post.tags ? post.tags.join(', ') : ''),
-      image: meta.image || post.cover_image_url
+      image: meta.image || post.cover_image_url,
+      type: 'article'
     });
 
     var related = D.blogsData.filter(function (p) { return p.id !== post.id; }).slice(0, 2);

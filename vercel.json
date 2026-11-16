@@ -2,18 +2,350 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
-    { "source": "/sw.js", "headers": [
-      { "key": "Cache-Control", "value": "no-cache" },
-      { "key": "Service-Worker-Allowed", "value": "/" } ] },
-    { "source": "/manifest.json", "headers": [
-      { "key": "Content-Type", "value": "application/manifest+json" },
-      { "key": "Cache-Control", "value": "public, max-age=86400" } ] },
-    { "source": "/vendor/(.*)", "headers": [
-      { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" } ] },
-    { "source": "/assets/(.*)", "headers": [
-      { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=2592000" } ] },
-    { "source": "/(.*)", "headers": [
-      { "key": "X-Content-Type-Options", "value": "nosniff" },
-      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" } ] }
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/vendor/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "nikah-com"
+        }
+      ],
+      "destination": "/_prerendered/project/nikah-com.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "fitaval"
+        }
+      ],
+      "destination": "/_prerendered/project/fitaval.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "gate-hypermarket"
+        }
+      ],
+      "destination": "/_prerendered/project/gate-hypermarket.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "corepro-sales-hub"
+        }
+      ],
+      "destination": "/_prerendered/project/corepro-sales-hub.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "uplixo"
+        }
+      ],
+      "destination": "/_prerendered/project/uplixo.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "nikah-net"
+        }
+      ],
+      "destination": "/_prerendered/project/nikah-net.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "herambition"
+        }
+      ],
+      "destination": "/_prerendered/project/herambition.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "northridge-partners"
+        }
+      ],
+      "destination": "/_prerendered/project/northridge-partners.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "sri-vinayaka-group"
+        }
+      ],
+      "destination": "/_prerendered/project/sri-vinayaka-group.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "kaizer-lars"
+        }
+      ],
+      "destination": "/_prerendered/project/kaizer-lars.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "agricrop-ai"
+        }
+      ],
+      "destination": "/_prerendered/project/agricrop-ai.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "innoverse"
+        }
+      ],
+      "destination": "/_prerendered/project/innoverse.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "cervical-ai"
+        }
+      ],
+      "destination": "/_prerendered/project/cervical-ai.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "rag-chatbot"
+        }
+      ],
+      "destination": "/_prerendered/project/rag-chatbot.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "truthguard"
+        }
+      ],
+      "destination": "/_prerendered/project/truthguard.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "reciperave"
+        }
+      ],
+      "destination": "/_prerendered/project/reciperave.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "mobileinfoga"
+        }
+      ],
+      "destination": "/_prerendered/project/mobileinfoga.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "selio-marketing-co"
+        }
+      ],
+      "destination": "/_prerendered/project/selio-marketing-co.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "vehicle-rental-service"
+        }
+      ],
+      "destination": "/_prerendered/project/vehicle-rental-service.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "ev-stations-locator"
+        }
+      ],
+      "destination": "/_prerendered/project/ev-stations-locator.html"
+    },
+    {
+      "source": "/project",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "e-shop"
+        }
+      ],
+      "destination": "/_prerendered/project/e-shop.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "stop-the-scam-workshop"
+        }
+      ],
+      "destination": "/_prerendered/blog/stop-the-scam-workshop.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "ksc-founders-meetup-2026"
+        }
+      ],
+      "destination": "/_prerendered/blog/ksc-founders-meetup-2026.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "startup-saturday"
+        }
+      ],
+      "destination": "/_prerendered/blog/startup-saturday.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "dr-cv-raman-award"
+        }
+      ],
+      "destination": "/_prerendered/blog/dr-cv-raman-award.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "karate-blackbelt-milestone"
+        }
+      ],
+      "destination": "/_prerendered/blog/karate-blackbelt-milestone.html"
+    }
   ]
 }

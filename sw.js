@@ -6,7 +6,7 @@
    - images, vendor, fonts   : cache first (instant), refreshed in background
    - Offline navigation      : every route falls back to the cached app shell
    ===================================================================== */
-const VERSION = '98091e9bb1';
+const VERSION = '93df890cf9';
 const CORE = 'core-' + VERSION;
 const RUNTIME = 'runtime-' + VERSION;
 const MAX_RUNTIME_ENTRIES = 120;

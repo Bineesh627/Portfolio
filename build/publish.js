@@ -1,4 +1,4 @@
-/* Copies only the site files into /public (the folder Vercel serves). */
+/* Copies only the site files into /public (the folder Vercel serves), then prerenders the pages. */
 const fs = require("fs"), path = require("path");
 const root = path.join(__dirname, "..");
 const out = path.join(root, "public");
@@ -13,3 +13,4 @@ for (const it of items) {
   else console.warn("missing:", it);
 }
 console.log("public/ ready:", fs.readdirSync(out).length, "entries");
+require("./prerender");   // fills <main> of every public route with real HTML (see prerender.js)

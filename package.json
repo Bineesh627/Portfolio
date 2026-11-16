@@ -1,2 +1,10 @@
-{ "name": "bineesh-portfolio", "private": true,
-  "scripts": { "start": "node dev-server.js", "build": "cd build && npm install && node build.js && node publish.js" } }
+{
+  "name": "bineesh-portfolio",
+  "private": true,
+  "scripts": {
+    "start": "node dev-server.js",
+    "build": "cd build && npm install && node build.js && node publish.js && node check.js",
+    "test": "cd build && node check.js",
+    "preview": "node dev-server.js --public"
+  }
+}

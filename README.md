@@ -26,3 +26,14 @@ New icon names are picked up automatically from `ic('name')` / `icon: "name"`.
 Do not double-click `index.html` (browsers block the manifest and service worker on `file://`). Instead:
 
     node dev-server.js        # then open http://localhost:3000
+
+
+## Prerendered HTML (SEO / link previews)
+
+Pages are drawn by JavaScript, but the deployed HTML is **prerendered**, so crawlers and link-preview bots that do not run JavaScript get the real content, title, description, canonical URL and Open Graph tags.
+
+- `npm run build` = bundle (`build/build.js`) -> copy to `public/` and prerender (`build/publish.js` + `build/prerender.js`) -> verify (`build/check.js`).
+- `prerender.js` runs the site's own `js/app.js` in jsdom once per route and writes the result into a copy of the root `*.html` template. The root `*.html` files stay as templates; never edit `public/`.
+- `/project?slug=x` and `/blog?slug=x` get `public/_prerendered/<kind>/<slug>.html`, served at the SAME URL by `vercel.json` rewrites (no duplicate URLs). **After adding or renaming a project/blog, run `npm run build` locally and commit the updated `vercel.json`**; the Vercel build fails if it is stale. Unknown slugs and legacy `?id=` links fall back to the normal client-rendered page.
+- `npm test` checks the built HTML (content, metadata, canonical, rewrites). `npm run preview` serves `public/` with the rewrites applied.
+- Limits: the browser still re-draws the page on load (same content), `/contact` is a short page, and unknown slugs return HTTP 200 with a client-side "not found" message.
