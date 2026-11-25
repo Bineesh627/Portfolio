@@ -1,17 +1,17 @@
-/* Project #12: Nikah.Net — Muslim Matrimonial Advertising Platform
+/* Project #12: Nikkahnet.in — Muslim Matrimonial Advertising Platform
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 12,
   slug: "nikah-net",
-  title: "Nikah.Net — Muslim Matrimonial Advertising Platform",
+  title: "Nikkahnet.in — Muslim Matrimonial Advertising Platform",
   description: "A bilingual (English / Malayalam) matrimonial advertising platform for Kerala Muslim families, with searchable profiles, a 5-step ad wizard, shortlist, biodata view and privacy-first design.",
   image: "assets/img/projects/new/cover-nikkahnet.webp",
   tags: ["React", "Vite", "JavaScript", "Lucide Icons", "Canvas Confetti", "SEO", "Bilingual UI"],
   liveUrl: "https://www.nikkahnet.in/",
   githubUrl: "https://github.com/happyweddingofficial/Nikkahnet",
   caseStudyContent: `
-<h1>Nikah.Net: Connecting Hearts with Dignity &amp; Trust</h1>
-<p>Nikah.Net is a matrimonial advertising and proposal-sharing platform for Muslim families in Malappuram, Kozhikode and the wider Kerala and GCC community. I built the front end with a strong focus on privacy, respect and ease of use for families, not just individuals.</p>
+<h1>Nikkahnet.in: Connecting Hearts with Dignity &amp; Trust</h1>
+<p>Nikkahnet.in is a matrimonial advertising and proposal-sharing platform for Muslim families in Malappuram, Kozhikode and the wider Kerala and GCC community. I built the front end with a strong focus on privacy, respect and ease of use for families, not just individuals.</p>
 <h2>Key Features</h2>
 <ul>
 <li><strong>Profile directory</strong> with cards, quick search and filters so families can find relevant proposals fast.</li>

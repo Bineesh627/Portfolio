@@ -84,7 +84,7 @@ SITE_DATA.projectsMetadata = {
     keywords: "Career Consulting, Resume, LinkedIn, TanStack Start, React, GSAP"
   },
   "12": {
-    title: "Nikah.Net - Muslim Matrimonial Advertising Platform",
+    title: "Nikkahnet.in - Muslim Matrimonial Advertising Platform",
     description: "Bilingual English/Malayalam matrimonial platform for Kerala Muslim families with profile directory, ad wizard and privacy-first design.",
     keywords: "Matrimonial, Kerala, Malayalam, React, Vite"
   },
@@ -124,7 +124,7 @@ SITE_DATA.projectsMetadata = {
     keywords: "Fitaval, Fitness Platform, Gym CRM, Flutter, React, Multi-tenant SaaS"
   },
   "21": {
-    title: "Nikah.com - Matrimonial Advertising & Profile Sharing Website",
+    title: "Nikahcom.in- Matrimonial Advertising & Profile Sharing Website",
     description: "Trust-focused website for a Kerala matrimonial advertising and profile-sharing service with a four-step process, policy pages, FAQ and WhatsApp-first contact.",
     keywords: "Nikah.com, Matrimonial Advertising, Profile Sharing, Kerala, Malappuram, React, TypeScript, Vite, WhatsApp"
   },

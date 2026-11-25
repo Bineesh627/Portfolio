@@ -91,7 +91,7 @@ Developer portfolio of Bineesh S: Tech-Driven Innovator, Tech Entrepreneur, AI E
 
 ## Featured Projects
 
-### Nikah.com — Matrimonial Advertising & Profile Sharing Website (ID: 21)
+### Nikahcom.in— Matrimonial Advertising & Profile Sharing Website (ID: 21)
 * **Description**: A clean, trust-focused website for a matrimonial advertising and profile-sharing service in Kerala, with a transparent four-step process, clear policy pages, testimonials, an FAQ and WhatsApp-first contact.
 * **Tech**: React, TypeScript, Vite, Tailwind CSS, shadcn/ui, SEO, WhatsApp Integration
 * **Live**: https://www.nikahcom.in/
@@ -122,7 +122,7 @@ Developer portfolio of Bineesh S: Tech-Driven Innovator, Tech Entrepreneur, AI E
 * **GitHub**: https://github.com/Bineesh627/UpliXo
 * **Case Study**: https://bineeshs.vercel.app/project?slug=uplixo
 
-### Nikah.Net — Muslim Matrimonial Advertising Platform (ID: 12)
+### Nikkahnet.in — Muslim Matrimonial Advertising Platform (ID: 12)
 * **Description**: A bilingual (English / Malayalam) matrimonial advertising platform for Kerala Muslim families, with searchable profiles, a 5-step ad wizard, shortlist, biodata view and privacy-first design.
 * **Tech**: React, Vite, JavaScript, Lucide Icons, Canvas Confetti, SEO, Bilingual UI
 * **Live**: https://www.nikkahnet.in/
@@ -132,7 +132,7 @@ Developer portfolio of Bineesh S: Tech-Driven Innovator, Tech Entrepreneur, AI E
 ### HerAmbition — Women's Leadership & Career Community (ID: 13)
 * **Description**: A premium Next.js website for HerAmbition, a women's leadership and career community, showcasing programs, membership, events and organisation partnerships with smooth Framer Motion interactions.
 * **Tech**: Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Lucide Icons
-* **Live**: https://her-ambition-zeta.vercel.app/
+* **Live**: https://www.herambition.co.in/
 * **GitHub**: https://github.com/Bineesh627/Her-Ambition
 * **Case Study**: https://bineeshs.vercel.app/project?slug=herambition
 
@@ -328,12 +328,12 @@ Developer portfolio of Bineesh S: Tech-Driven Innovator, Tech Entrepreneur, AI E
 * [Sitemap](https://bineeshs.vercel.app/sitemap.xml)
 
 ### Project Case Studies
-* [Nikah.com — Matrimonial Advertising & Profile Sharing Website](https://bineeshs.vercel.app/project?slug=nikah-com)
+* [Nikahcom.in— Matrimonial Advertising & Profile Sharing Website](https://bineeshs.vercel.app/project?slug=nikah-com)
 * [Fitaval — Multi-Tenant Fitness Business Platform](https://bineeshs.vercel.app/project?slug=fitaval)
 * [Gate Hypermarket — Retail Website with Flyers, Stores & Careers](https://bineeshs.vercel.app/project?slug=gate-hypermarket)
 * [CorePro Sales Hub — Sales CRM Platform](https://bineeshs.vercel.app/project?slug=corepro-sales-hub)
 * [UpliXo — Career Readiness & Consulting Platform](https://bineeshs.vercel.app/project?slug=uplixo)
-* [Nikah.Net — Muslim Matrimonial Advertising Platform](https://bineeshs.vercel.app/project?slug=nikah-net)
+* [Nikkahnet.in — Muslim Matrimonial Advertising Platform](https://bineeshs.vercel.app/project?slug=nikah-net)
 * [HerAmbition — Women's Leadership & Career Community](https://bineeshs.vercel.app/project?slug=herambition)
 * [Northridge Partners — Strategic Talent Landing Site](https://bineeshs.vercel.app/project?slug=northridge-partners)
 * [Sri Vinayaka Group — Sleeper Bus, Logistics & Tours Website](https://bineeshs.vercel.app/project?slug=sri-vinayaka-group)

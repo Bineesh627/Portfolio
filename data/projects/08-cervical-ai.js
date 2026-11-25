@@ -5,7 +5,7 @@ SITE_DATA.projectsData.push({
   slug: "cervical-ai",
   title: "Cervical AI — Federated Learning Cancer Screening",
   description: "A privacy-preserving multimodal AI system utilizing PyTorch models and the Flower federated learning framework for early cervical cancer detection.",
-  image: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?auto=format&fit=crop&q=80&w=800",
+  image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
   tags: ["Python", "Django", "PyTorch", "Federated Learning", "Explainable AI"],
   githubUrl: "https://github.com/Bineesh627/cervical_ai",
   caseStudyContent: `
@@ -61,7 +61,6 @@ SITE_DATA.projectsData.push({
     }
   ],
   gallery: [
-    "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?auto=format&fit=crop&q=80&w=600",
     "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600",
     "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600",
     "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=600",

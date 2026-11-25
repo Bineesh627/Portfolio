@@ -12,6 +12,7 @@ SITE_DATA.experienceData = [
     status: "ACTIVE",
     title: "Co-founder & CTO",
     company: "Fitaval",
+    location: "PRIICE, PSMO Tirurangadi, Tirurangadi, Malappuram, Kerala 676306",
     link: "https://www.fitaval.com/",
     employmentType: "Part-time",
     workMode: "Hybrid",

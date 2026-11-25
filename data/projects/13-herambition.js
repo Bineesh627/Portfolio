@@ -8,7 +8,7 @@ SITE_DATA.projectsData.push({
   image: "assets/img/projects/new/herambition-hero-portrait.webp",
   tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide Icons"],
   githubUrl: "https://github.com/Bineesh627/Her-Ambition",
-  liveUrl: "https://her-ambition-zeta.vercel.app/",
+  liveUrl: "https://www.herambition.co.in/",
   caseStudyContent: `
 <h1>HerAmbition: Lead with Grace &amp; Impact</h1>
 <p>HerAmbition is a women's leadership and career community. I built its website to present the brand with warmth and authority and to turn visitors into members, program participants and partner organisations.</p>
@@ -41,5 +41,5 @@ SITE_DATA.projectsData.push({
     "assets/img/projects/new/herambition-program-influence.webp",
     "assets/img/projects/new/herambition-program-foundher.webp",
     "assets/img/projects/new/herambition-membership-meeting.webp"
-]
+  ]
 });
