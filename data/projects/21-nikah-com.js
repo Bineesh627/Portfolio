@@ -1,17 +1,17 @@
-/* Project #21: Nikahcom.in— Matrimonial Advertising & Profile Sharing Website
+/* Project #21: Nikahcom.in — Matrimonial Advertising & Profile Sharing Website
    caseStudyContent is plain HTML (h1/h2/p/ul/blockquote...). */
 SITE_DATA.projectsData.push({
   id: 21,
   slug: "nikah-com",
-  title: "Nikahcom.in— Matrimonial Advertising & Profile Sharing Website",
+  title: "Nikahcom.in — Matrimonial Advertising & Profile Sharing Website",
   description: "A clean, trust-focused website for a matrimonial advertising and profile-sharing service in Kerala, with a transparent four-step process, clear policy pages, testimonials, an FAQ and WhatsApp-first contact.",
   image: "assets/img/projects/new/cover-nikahcom.webp",
   tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "SEO", "WhatsApp Integration"],
   liveUrl: "https://www.nikahcom.in/",
   githubUrl: "https://github.com/happyweddingofficial/community-connect-hub",
   caseStudyContent: `
-<h1>Nikah.com: Connecting Families with Respect, Privacy &amp; Trust</h1>
-<p>Nikahcom.inis a matrimonial advertising and profile-sharing service based in Malappuram, Kerala. I built its website to feel minimal, trustworthy and community-focused: a predominantly white, mobile-friendly design that families of every age group can read and act on without friction.</p>
+<h1>Nikahcom.in: Connecting Families with Respect, Privacy &amp; Trust</h1>
+<p>Nikahcom.in is a matrimonial advertising and profile-sharing service based in Malappuram, Kerala. I built its website to feel minimal, trustworthy and community-focused: a predominantly white, mobile-friendly design that families of every age group can read and act on without friction.</p>
 <h2>The Goal</h2>
 <p>The service is not a broker or matchmaking bureau, and the site had to say so clearly. Visitors needed to understand how profiles are received, prepared and shared, what the service does and does not do, and how to reach the team, all without feeling like they were using a complicated portal.</p>
 <h2>What I Built</h2>

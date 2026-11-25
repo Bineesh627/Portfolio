@@ -124,9 +124,9 @@ SITE_DATA.projectsMetadata = {
     keywords: "Fitaval, Fitness Platform, Gym CRM, Flutter, React, Multi-tenant SaaS"
   },
   "21": {
-    title: "Nikahcom.in- Matrimonial Advertising & Profile Sharing Website",
+    title: "Nikahcom.in - Matrimonial Advertising & Profile Sharing Website",
     description: "Trust-focused website for a Kerala matrimonial advertising and profile-sharing service with a four-step process, policy pages, FAQ and WhatsApp-first contact.",
-    keywords: "Nikah.com, Matrimonial Advertising, Profile Sharing, Kerala, Malappuram, React, TypeScript, Vite, WhatsApp"
+    keywords: "Nikahcom.in, Matrimonial Advertising, Profile Sharing, Kerala, Malappuram, React, TypeScript, Vite, WhatsApp"
   },
   "20": {
     title: "Gate Hypermarket - Retail Website with Flyers, Stores & Careers",
