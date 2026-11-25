@@ -5,7 +5,7 @@ SITE_DATA.projectsData.push({
   slug: "nikah-com",
   title: "Nikahcom.in — Matrimonial Advertising & Profile Sharing Website",
   description: "A clean, trust-focused website for a matrimonial advertising and profile-sharing service in Kerala, with a transparent four-step process, clear policy pages, testimonials, an FAQ and WhatsApp-first contact.",
-  image: "assets/img/projects/new/cover-nikahcom.webp",
+  image: "assets/img/projects/new/cover-nikahcom.jpg",
   tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "SEO", "WhatsApp Integration"],
   liveUrl: "https://www.nikahcom.in/",
   githubUrl: "https://github.com/happyweddingofficial/community-connect-hub",

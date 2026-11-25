@@ -5,7 +5,7 @@ SITE_DATA.projectsData.push({
   slug: "nikah-net",
   title: "Nikkahnet.in — Muslim Matrimonial Advertising Platform",
   description: "A bilingual (English / Malayalam) matrimonial advertising platform for Kerala Muslim families, with searchable profiles, a 5-step ad wizard, shortlist, biodata view and privacy-first design.",
-  image: "assets/img/projects/new/cover-nikkahnet.webp",
+  image: "assets/img/projects/new/cover-nikkahnet.jpg",
   tags: ["React", "Vite", "JavaScript", "Lucide Icons", "Canvas Confetti", "SEO", "Bilingual UI"],
   liveUrl: "https://www.nikkahnet.in/",
   githubUrl: "https://github.com/happyweddingofficial/Nikkahnet",
